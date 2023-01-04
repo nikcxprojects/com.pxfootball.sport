@@ -13,8 +13,8 @@ public class Ball : MonoBehaviour
 
     private void Start()
     {
-        transform.position = FindObjectOfType<Player>().transform.position + Vector3.up * 0.5f;
-        Rigidbody.velocity = Player.Velocity.normalized * force;
+        transform.position = new Vector2(0, -0.317f);
+        Rigidbody.velocity = new Vector2(Random.Range(1, 5), Random.Range(1, 5)).normalized;
     }
 
     private void Update()

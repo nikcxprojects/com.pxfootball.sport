@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] bool IsBot;
+
     private Camera _camera;
     public static Vector2 Velocity { get; private set; }
 
@@ -14,7 +17,7 @@ public class Player : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (Time.timeScale < 1)
+        if (Time.timeScale < 1 || IsBot)
         {
             return;
         }
@@ -24,19 +27,15 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if(Time.timeScale < 1)
+        if(IsBot)
         {
+            transform.position = new Vector2(GameManager.Instance.BallRef.transform.position.x, transform.position.y);
             return;
         }
 
-        if(Input.GetMouseButtonDown(0))
+        if(Time.timeScale < 1)
         {
-            if(transform.GetChild(0).gameObject.activeSelf)
-            {
-                transform.GetChild(0).gameObject.SetActive(false);
-            }
-
-            GameManager.Instance.ThrowBall();
+            return;
         }
 
         Vector2 toInput = _camera.ScreenToWorldPoint(Input.mousePosition) - transform.position;

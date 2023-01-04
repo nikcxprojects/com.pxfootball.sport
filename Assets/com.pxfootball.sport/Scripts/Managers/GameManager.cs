@@ -4,10 +4,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get => FindObjectOfType<GameManager>(); }
 
-    private Player PlayerPrefab { get; set; }
-    private Goal GoalPrefab { get; set; }
-    private Level LevelPrefab { get; set; }
-    private Ball BallPrefab { get; set; }
+    private GameObject LevelRef { get; set; }
+    public GameObject BallRef { get; set; }
+
+    private GameObject LevelPrefab { get; set; }
+    private GameObject BallPrefab { get; set; }
 
     private Transform EnvironmentRef { get; set; }
 
@@ -15,68 +16,38 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        PlayerPrefab = Resources.Load<Player>("player");
-        GoalPrefab = Resources.Load<Goal>("goal");
-        LevelPrefab = Resources.Load<Level>("level");
-        BallPrefab = Resources.Load<Ball>("ball");
+        LevelPrefab = Resources.Load<GameObject>("level");
+        BallPrefab = Resources.Load<GameObject>("ball");
 
         EnvironmentRef = GameObject.Find("Environment").transform;
     }
 
-    private void Start()
-    {
-        Block.OnCollisionEnter += () =>
-        {
-            var hit = Instantiate(Resources.Load<AudioSource>("hit"));
-            hit.mute = GameObject.Find("SFX Source").GetComponent<AudioSource>().mute;
+    //private void Start()
+    //{
+    //    Block.OnCollisionEnter += () =>
+    //    {
+    //        var hit = Instantiate(Resources.Load<AudioSource>("hit"));
+    //        hit.mute = GameObject.Find("SFX Source").GetComponent<AudioSource>().mute;
 
-            if(SettingsManager.VibraEnable)
-            {
-                Handheld.Vibrate();
-            }
-        };
-    }
+    //        if(SettingsManager.VibraEnable)
+    //        {
+    //            Handheld.Vibrate();
+    //        }
+    //    };
+    //}
 
     public void DestroyOld()
     {
-        if (FindObjectOfType<Player>())
-        {
-            Destroy(FindObjectOfType<Player>().gameObject);
-        }
-
-        if (FindObjectOfType<Goal>())
-        {
-            Destroy(FindObjectOfType<Goal>().gameObject);
-        }
-
-        if (FindObjectOfType<Level>())
-        {
-            Destroy(FindObjectOfType<Level>().gameObject);
-        }
-
-        if (FindObjectOfType<Ball>())
-        {
-            Destroy(FindObjectOfType<Ball>().gameObject);
-        }
+        Destroy(LevelRef);
+        Destroy(BallRef);
     }
 
     public void StartGame()
     {
         DestroyOld();
 
-        Instantiate(PlayerPrefab, EnvironmentRef);
-        Instantiate(GoalPrefab, EnvironmentRef);
-        Instantiate(LevelPrefab, EnvironmentRef);
-    }
-
-    public void ThrowBall()
-    {
-        if(FindObjectOfType<Ball>())
-        {
-            return;
-        }
-
-        Instantiate(BallPrefab, EnvironmentRef);
+        LevelRef = Instantiate(LevelPrefab, EnvironmentRef);
+        BallRef = Instantiate(BallPrefab, EnvironmentRef);
     }
 
     public void EndGame()

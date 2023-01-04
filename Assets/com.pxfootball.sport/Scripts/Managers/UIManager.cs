@@ -29,14 +29,6 @@ public class UIManager : MonoBehaviour
         OpenWindow(0);
     }
 
-    private void Start()
-    {
-        Block.OnCollisionEnter += () =>
-        {
-            scoreText.text = $"{++score}";
-        };
-    }
-
     public static void CheckResult(bool IsWin)
     {
         Instantiate(Resources.Load<Popup>("popup"), GameObject.Find("main canvas").transform);

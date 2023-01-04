@@ -2,10 +2,7 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
-    private void Start()
-    {
-        transform.position = new Vector2(0, FindObjectOfType<UIManager>().topBorder.position.y - 0.9f);
-    }
+    [SerializeField] bool IsBot;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -14,7 +11,7 @@ public class Goal : MonoBehaviour
             return;
         }
 
-        UIManager.CheckResult(true);
+        //UIManager.CheckResult(true);
     }
 
     private void OnDestroy()
