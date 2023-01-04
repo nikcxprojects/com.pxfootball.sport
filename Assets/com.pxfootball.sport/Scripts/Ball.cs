@@ -27,6 +27,6 @@ public class Ball : MonoBehaviour
         float speed = LastVelocity.magnitude;
 
         Vector2 direction = Vector2.Reflect(LastVelocity.normalized, collision.contacts[0].normal);
-        Rigidbody.velocity = direction * Mathf.Max(speed, force);
+        Rigidbody.velocity = direction * Mathf.Max(force, force);
     }
 }
