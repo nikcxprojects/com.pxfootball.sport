@@ -15,6 +15,7 @@ public class Ball : MonoBehaviour
     {
         transform.position = new Vector2(0, -0.317f);
         Rigidbody.velocity = new Vector2(Random.Range(1, 5), Random.Range(1, 5)).normalized * force;
+        Rigidbody.velocity = Vector2.down * force;
     }
 
     private void Update()
