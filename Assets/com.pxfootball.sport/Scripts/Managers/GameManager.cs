@@ -42,6 +42,12 @@ public class GameManager : MonoBehaviour
         Destroy(BallRef);
     }
 
+    public void RespawnBall()
+    {
+        Destroy(BallRef);
+        BallRef = Instantiate(BallPrefab, EnvironmentRef);
+    }
+
     public void StartGame()
     {
         DestroyOld();

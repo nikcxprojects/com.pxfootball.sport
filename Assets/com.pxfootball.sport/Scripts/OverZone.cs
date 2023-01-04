@@ -9,8 +9,7 @@ public class OverZone : MonoBehaviour
             return;
         }
 
-        FindObjectOfType<UIManager>().OpenWindow(5);
-        UIManager.CheckResult(false);
+        GameManager.Instance.RespawnBall();
     }
 
     private void OnDestroy()
