@@ -17,7 +17,6 @@ public class UIManager : MonoBehaviour
 
     [Space(10)]
     [SerializeField] Text scoreText;
-    [SerializeField] Text timerText;
 
     [Space(10)]
     public Transform topBorder;
@@ -42,14 +41,6 @@ public class UIManager : MonoBehaviour
     {
         Instantiate(Resources.Load<Popup>("popup"), GameObject.Find("main canvas").transform);
         OnGameEnd?.Invoke(IsWin);
-    }
-
-    private void Update()
-    {
-        int min = Mathf.FloorToInt(GameManager.Instance.ElapsedSeconds / 60);
-        int sec = Mathf.FloorToInt(GameManager.Instance.ElapsedSeconds % 60);
-
-        timerText.text = string.Format("{0:00}:{1:00}", min, sec);
     }
 
     public void OpenMenu()
