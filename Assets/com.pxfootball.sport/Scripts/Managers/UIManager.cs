@@ -47,7 +47,9 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.StartGame();
 
         OpenWindow(3);
+
         FindObjectOfType<HealthBar>().ResetMe();
+        FindObjectOfType<Score>().ResetMe();
     }
 
     public void OpenWindow(int windowIndex)

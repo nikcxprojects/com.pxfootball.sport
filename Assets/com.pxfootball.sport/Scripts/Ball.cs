@@ -14,11 +14,6 @@ public class Ball : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    private void OnDestroy()
-    {
-        OnCollided = null;
-    }
-
     private void Start()
     {
         transform.position = new Vector2(0, -0.317f);
@@ -37,6 +32,12 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if(SettingsManager.VibraEnable)
+        {
+            Handheld.Vibrate();
+        }
+
+        OnCollided?.Invoke();
         float speed = LastVelocity.magnitude;
 
         Vector2 direction = Vector2.Reflect(LastVelocity.normalized, collision.contacts[0].normal);
