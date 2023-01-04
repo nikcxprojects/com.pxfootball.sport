@@ -18,10 +18,6 @@ public class UIManager : MonoBehaviour
     [Space(10)]
     [SerializeField] Text scoreText;
 
-    [Space(10)]
-    public Transform topBorder;
-    public Transform bottomBorder;
-
     public static Action<bool> OnGameEnd { get; set; }
 
     private void Awake()

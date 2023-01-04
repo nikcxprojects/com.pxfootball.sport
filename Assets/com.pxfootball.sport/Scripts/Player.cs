@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         _camera = Camera.main;
-        transform.position = new Vector2(0, FindObjectOfType<UIManager>().bottomBorder.position.y + 1.35f);
     }
 
     private void OnMouseDrag()
@@ -27,23 +26,24 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if(IsBot)
+        if (Time.timeScale < 1)
+        {
+            return;
+        }
+
+        if (IsBot)
         {
             transform.position = new Vector2(GameManager.Instance.BallRef.transform.position.x, transform.position.y);
-            return;
         }
-
-        if(Time.timeScale < 1)
+        else
         {
-            return;
+            Vector2 toInput = _camera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            toInput.Normalize();
+
+            toInput.x = Mathf.Clamp(toInput.x, -1, 1);
+            toInput.y = Mathf.Clamp(toInput.y, 0.2f, 1);
+
+            Velocity = toInput;
         }
-
-        Vector2 toInput = _camera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        toInput.Normalize();
-
-        toInput.x = Mathf.Clamp(toInput.x, -1, 1);
-        toInput.y = Mathf.Clamp(toInput.y, 0.2f, 1);
-
-        Velocity = toInput;
     }
 }
