@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
     [SerializeField] bool IsBot;
+    public static Action OnCollided { get; set; }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -11,7 +13,10 @@ public class Goal : MonoBehaviour
             return;
         }
 
-        //UIManager.CheckResult(true);
+        if(!IsBot)
+        {
+            OnCollided?.Invoke();
+        }
     }
 
     private void OnDestroy()

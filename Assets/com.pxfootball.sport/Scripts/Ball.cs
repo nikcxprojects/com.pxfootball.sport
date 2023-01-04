@@ -20,6 +20,11 @@ public class Ball : MonoBehaviour
     private void Update()
     {
         LastVelocity = Rigidbody.velocity;
+
+        if(LastVelocity.magnitude < 1)
+        {
+            GameManager.Instance.RespawnBall();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -18,17 +18,17 @@ public class UIManager : MonoBehaviour
     [Space(10)]
     [SerializeField] Text scoreText;
 
-    public static Action<bool> OnGameEnd { get; set; }
+    public static Action OnGameEnd { get; set; }
 
     private void Awake()
     {
         OpenWindow(0);
     }
 
-    public static void CheckResult(bool IsWin)
+    public static void ShowPopup()
     {
         Instantiate(Resources.Load<Popup>("popup"), GameObject.Find("main canvas").transform);
-        OnGameEnd?.Invoke(IsWin);
+        OnGameEnd?.Invoke();
     }
 
     public void OpenMenu()
