@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
@@ -6,15 +7,21 @@ public class Ball : MonoBehaviour
     private Vector2 LastVelocity { get; set; }
     private Rigidbody2D Rigidbody { get; set; }
 
+    public static Action OnCollided { get; set; }
+
     private void Awake()
     {
         Rigidbody = GetComponent<Rigidbody2D>();
     }
 
+    private void OnDestroy()
+    {
+        OnCollided = null;
+    }
+
     private void Start()
     {
         transform.position = new Vector2(0, -0.317f);
-        Rigidbody.velocity = new Vector2(Random.Range(1, 5), Random.Range(1, 5)).normalized * force;
         Rigidbody.velocity = Vector2.down * force;
     }
 

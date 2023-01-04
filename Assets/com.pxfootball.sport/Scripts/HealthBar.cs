@@ -19,13 +19,7 @@ public class HealthBar : MonoBehaviour
                 return;
             }
 
-            for(int i = 0; i < transform.childCount; i++)
-            {
-                int index = transform.GetChild(i).GetSiblingIndex();
-                float alpha = index > Count ? 1 : 0.5f;
-
-                transform.GetChild(i).GetComponent<Image>().color = new Color(1, 1, 1, alpha);
-            }
+            transform.GetChild(Count).GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
         };
     }
 
@@ -37,7 +31,7 @@ public class HealthBar : MonoBehaviour
     public void ResetMe()
     {
         Count = transform.childCount;
-        for(int i = Count - 1; i > 0; i--)
+        for(int i = transform.childCount - 1; i > 0; i--)
         {
             transform.GetChild(i).GetComponent<Image>().color = Color.white;
         }
