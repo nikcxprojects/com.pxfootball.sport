@@ -14,7 +14,7 @@ public class Ball : MonoBehaviour
     private void Start()
     {
         transform.position = new Vector2(0, -0.317f);
-        Rigidbody.velocity = new Vector2(Random.Range(1, 5), Random.Range(1, 5)).normalized;
+        Rigidbody.velocity = new Vector2(Random.Range(1, 5), Random.Range(1, 5)).normalized * force;
     }
 
     private void Update()
@@ -27,6 +27,6 @@ public class Ball : MonoBehaviour
         float speed = LastVelocity.magnitude;
 
         Vector2 direction = Vector2.Reflect(LastVelocity.normalized, collision.contacts[0].normal);
-        Rigidbody.velocity = direction * Mathf.Max(speed, speed);
+        Rigidbody.velocity = direction * Mathf.Max(speed, force);
     }
 }

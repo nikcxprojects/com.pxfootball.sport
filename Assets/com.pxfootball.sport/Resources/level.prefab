@@ -464,6 +464,7 @@ GameObject:
   - component: {fileID: 8220954635708957016}
   - component: {fileID: 8220954635708957017}
   - component: {fileID: 8220954635708957019}
+  - component: {fileID: 7211346445832332942}
   m_Layer: 0
   m_Name: player board
   m_TagString: Untagged
@@ -571,6 +572,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsBot: 0
+--- !u!61 &7211346445832332942
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8220954635708957023}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.043785557}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.21, y: 0.63}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.3618946, y: 1.0159109}
+  m_EdgeRadius: 0
 --- !u!1 &8220954636022375861
 GameObject:
   m_ObjectHideFlags: 0
